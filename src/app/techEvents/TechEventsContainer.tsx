@@ -39,19 +39,19 @@ const TechEventsContainer: React.FC = () => {
     fetchEvents();
   }, []);
 
-  const filteredEvents = events.filter(
+  const filteredEvents = events?.filter(
     (event) =>
-      (!selectedCity || event.location === selectedCity.name) &&
-      event.name.toLowerCase().includes(searchTerm.toLowerCase())
+      (!selectedCity || event?.location === selectedCity?.name) &&
+      event?.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
 const handleSave = async (data: Event) => {
     try {
       let response;
-  
-      if (data.id ) {
+      if (data?.id ) {
+        
         // If event has an ID, update it
-        response = await axios.put(`/api/events/${data?.id}`, data);
+        response = await axios.put(`/api/events/${data?._id}`, data);
       } else if(data?.name) {
         // Otherwise, create a new event
         data.id = Date.now().toString();
@@ -91,7 +91,6 @@ const handleSave = async (data: Event) => {
     try {
         setEditEvent(data); 
         setDialogVisible(true)
-      console.log(data)
     } catch (error) {
       console.error("Error deleting event:", error);
     }

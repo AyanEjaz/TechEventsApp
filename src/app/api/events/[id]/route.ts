@@ -26,7 +26,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   
       // Read request body
       const updatedEvent = await req.json();
-  
+     
       // Remove `_id` field to avoid modification error
       delete updatedEvent._id;
   
@@ -45,7 +45,7 @@ export async function PUT(req: Request, { params }: { params: { id: string } }) 
   
       return NextResponse.json({ success: true, message: "Event updated successfully" }, { status: 200 });
     } catch (error) {
-      console.error("❌ Error updating event:", error);
+      console.error(" Error updating event:", error);
       return NextResponse.json(
         { success: false, message: "Error updating event", error: error },
         { status: 500 }

@@ -47,7 +47,7 @@ const EventGrid: React.FC<EventTableProps> = ({ onEdit,handleDelete ,filteredEve
         header="Actions"
         body={(rowData) => (
           <div className="flex gap-2">
-            <Button icon="pi pi-pencil" onClick={() =>{console.log("row",rowData); onEdit(rowData)}} />
+            <Button icon="pi pi-pencil" onClick={() =>{ onEdit(rowData)}} />
             <Button icon="pi pi-trash" className="p-button-danger" onClick={() => handleDelete(rowData?._id)} />
           </div>
         )}

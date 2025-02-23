@@ -31,7 +31,15 @@ const CreateEvent: React.FC<EventDialogProps> = ({ visible, onHide, onSubmit, de
         type: defaultValues.type || EventType.Conference, // Ensure type has a valid default
       });
     } else {
-      reset({} as Event);
+      reset({
+        name: "",
+        location: "",
+        address: "",
+        organizer: "",
+        date: "",
+        time: "",
+        type: EventType.Conference, 
+      });
     }
   }, [defaultValues, reset]);
   
