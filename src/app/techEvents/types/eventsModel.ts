@@ -16,6 +16,5 @@ export enum EventType {
     date: string;
     time: string;
     type: EventType;
-    _id:string;
   }
   
