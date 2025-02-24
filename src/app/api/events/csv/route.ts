@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { readEventsFromCSV } from "../../../../lib/csv";
+import { readEventsFromCSV } from ".././../../../lib/utils/csvutils";
 
 export async function GET() {
   const events = readEventsFromCSV();

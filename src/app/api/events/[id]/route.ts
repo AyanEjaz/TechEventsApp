@@ -1,20 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { connectToDatabase } from "../../../../lib/db";
-import EventModel from "../../../../models/events";
 import { clientPromise } from "../../../../lib/mongodb";
-
-export async function GET(req: Request, { params }: { params: { id: string } }) {
-  await connectToDatabase();
-  const event = await EventModel.findById(params.id);
-  if (!event) return NextResponse.json({ error: "Event not found" }, { status: 404 });
-  return NextResponse.json(event);
-}
-
 
 
 export async function PUT(req: Request, { params }: { params: { id: string } }) {
     try {
-      await connectToDatabase();
       const { id } = params;
   
       console.log("Updating Event ID:", id);
@@ -70,5 +59,56 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
     }
   }
   
-  
+// import { NextRequest, NextResponse } from "next/server";
+// import { readEventsFromCSV, writeEventsToCSV } from "../../../../lib/utils/csvutils"; // Import CSV functions
+
+// export async function GET(req: NextRequest, { params }: { params: { id: string } }) {
+//   const events = readEventsFromCSV();
+//   const event = events.find((event) => event.id === params.id);
+
+//   if (!event) {
+//     return NextResponse.json({ success: false, message: "Event not found" }, { status: 404 });
+//   }
+
+//   return NextResponse.json({ success: true, data: event });
+// }
+
+// export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+//   try {
+//     const events = readEventsFromCSV();
+//     const eventIndex = events.findIndex((event) => event.id === params.id);
+
+//     if (eventIndex === -1) {
+//       return NextResponse.json({ success: false, message: "Event not found" }, { status: 404 });
+//     }
+
+//     const updatedEvent = await req.json();
+//     events[eventIndex] = { ...events[eventIndex], ...updatedEvent };
+//     writeEventsToCSV(events);
+
+//     return NextResponse.json({ success: true, message: "Event updated successfully" });
+//   } catch (error) {
+//     console.error("Error updating event:", error);
+//     return NextResponse.json({ success: false, message: "Error updating event" }, { status: 500 });
+//   }
+// }
+
+// export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+//   try {
+//     let events = readEventsFromCSV();
+//     const initialLength = events.length;
+//     events = events.filter((event) => event.id !== params.id);
+
+//     if (events.length === initialLength) {
+//       return NextResponse.json({ success: false, message: "Event not found" }, { status: 404 });
+//     }
+
+//     writeEventsToCSV(events);
+//     return NextResponse.json({ success: true, message: "Event deleted!" });
+//   } catch (error) {
+//     console.error("Error deleting event:", error);
+//     return NextResponse.json({ success: false, message: "Error deleting event" }, { status: 500 });
+//   }
+// }
+
   
